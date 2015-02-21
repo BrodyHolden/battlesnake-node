@@ -10,7 +10,7 @@
   "snake" : {
     "name": "SNAKENADO",
     "color": "#fff000",
-    "head_url": "http://battlesnake-node.herokuapp.com/",
+    "head_url": "https://snakenado.ngrok.com/snakenado.png",
     "taunt": {
       "state": "I am SNAKENADO!",
       "move": "Make way for SNAKENADO!",
