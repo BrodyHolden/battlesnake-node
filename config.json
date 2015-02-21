@@ -8,14 +8,14 @@
     "end": "/end"
   },
   "snake" : {
-    "name": "battlesnake-node",
+    "name": "SNAKENADO",
     "color": "#fff000",
     "head_url": "http://battlesnake-node.herokuapp.com/",
     "taunt": {
-      "state": "It's great to be alive!",
-      "move": "Outta my way snake!",
-      "start": "Let's do this thang!",
-      "end": "I've been snaked!"
+      "state": "I am SNAKENADO!",
+      "move": "Make way for SNAKENADO!",
+      "start": "Today has a 100 percent chance of SNAKENADO!",
+      "end": "The SNAKENADO has passed."
     }
   }
 }
