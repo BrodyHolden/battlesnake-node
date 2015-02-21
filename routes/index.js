@@ -2,6 +2,18 @@ var config  = require('../config.json');
 var express = require('express');
 var router  = express.Router();
 
+function generateStartTaunt(gameId) {
+  var idParts = gameId.split('-');
+  return "Time for a " + idParts[idParts.length - 1] + "-nado!";
+}
+
+function State(width, height) {
+  this.width = width;
+  this.height = height;
+  this.state = "alive";
+  this.score = 100;
+}
+
 // Get the state of the snake
 router.get(config.routes.state, function (req, res) {
   // Do something here to calculate the returned state
@@ -31,7 +43,7 @@ router.post(config.routes.start, function (req, res) {
     name: config.snake.name,
     color: config.snake.color,
     head_url: config.snake.head_url,
-    taunt: config.snake.taunt.start
+    taunt: generateStartTaunt(req.body.game_id)
   };
 
   return res.json(data);
@@ -44,7 +56,7 @@ router.post(config.routes.move, function (req, res) {
   // Response data
   var data = {
     move: 'up', // one of: ["up", "down", "left", "right"]
-    taunt: 'What?!' || config.snake.taunt.move
+    taunt: ''
   };
 
   return res.json(data);
