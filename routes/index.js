@@ -3,22 +3,7 @@ var express = require('express');
 var router  = express.Router();
 var lib = require('../lib.js');
 
-function generateStartTaunt(gameId) {
-  var idParts = gameId.split('-');
-  return "Time for a " + idParts[idParts.length - 1] + "-nado!";
-}
-
 var lastDirection = null;
-
-function State(width, height) {
-  this.width = width;
-  this.height = height;
-  this.state = "alive";
-  this.score = 100;
-  this.coords = [];
-}
-
-var state = null;
 
 // Get the state of the snake
 router.get(config.routes.state, function (req, res) {
@@ -30,9 +15,9 @@ router.get(config.routes.state, function (req, res) {
     color: config.snake.color,
     head_url: config.snake.head_url,
     taunt: config.snake.taunt.state,
-    state: state.state || "unknown",
-    coords: state.coords || [],
-    score: state.score || 0
+    state: "alive",
+    coords: [],
+    score: 0
   };
 
   return res.json(data);
@@ -40,18 +25,14 @@ router.get(config.routes.state, function (req, res) {
 
 // Start
 router.post(config.routes.start, function (req, res) {
-  // Do something here to start the game
-  // Hint: do something with the incoming game_id? ;)
   console.log('Game ID:', req.body.game_id);
-
-  state = new State(req.body.width, req.body.height);
 
   // Response data
   var data = {
     name: config.snake.name,
     color: config.snake.color,
     head_url: config.snake.head_url,
-    taunt: generateStartTaunt(req.body.game_id)
+    taunt: lib.generateStartTaunt(req.body.game_id)
   };
 
   return res.json(data);
@@ -60,8 +41,7 @@ router.post(config.routes.start, function (req, res) {
 
 // Move
 router.post(config.routes.move, function (req, res) {
-  // Do something here to generate your move
-  //console.log('req.body=', req.body);
+
   var ourLocation = lib.getOurHeadLocation(req.body.snakes);
   console.log('ourLocation=', ourLocation);
   
@@ -74,7 +54,7 @@ router.post(config.routes.move, function (req, res) {
   lastDirection = move;
   // Response data
   var data = {
-    move: move, //'up', // one of: ["up", "down", "left", "right"]
+    move: move, // one of: ["up", "down", "left", "right"]
     taunt: ''
   };
 
