@@ -60,6 +60,7 @@ router.post(config.routes.move, function (req, res) {
   var taunt = '';
   if (move === lib.oppositeDirection(lastDirection[id])) {
     taunt = "I'd rather kill myself than feed you.";
+    console.log(taunt);
   }
 
   // Response data
