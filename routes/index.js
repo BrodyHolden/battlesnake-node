@@ -3,7 +3,7 @@ var express = require('express');
 var router  = express.Router();
 var lib = require('../lib.js');
 
-var lastDirection = null;
+var lastDirection = [];
 
 // Get the state of the snake
 router.get(config.routes.state, function (req, res) {
@@ -27,6 +27,8 @@ router.get(config.routes.state, function (req, res) {
 router.post(config.routes.start, function (req, res) {
   console.log('Game ID:', req.body.game_id);
 
+  lastDirection[req.body.game_id] = null;
+
   // Response data
   var data = {
     name: config.snake.name,
@@ -42,19 +44,21 @@ router.post(config.routes.start, function (req, res) {
 // Move
 router.post(config.routes.move, function (req, res) {
 
+  var id = req.body.game_id;
+
   var ourLocation = lib.getOurHeadLocation(req.body.snakes);
   console.log('ourLocation=', ourLocation);
   
   var foodLocation = lib.findClosestFood(ourLocation, req.body.food);
   console.log('foodLocation=', foodLocation);
 
-  var move = lib.nextMove(ourLocation, foodLocation, req.body.snakes, req.body.board, lastDirection);
+  var move = lib.nextMove(ourLocation, foodLocation, req.body.snakes, req.body.board, lastDirection[id]);
   console.log('move=' + move);
   
-  lastDirection = move;
+  lastDirection[id] = move;
 
   taunt = '';
-  if (move == lib.oppositeDirection(lastDirection)) {
+  if (move == lib.oppositeDirection(lastDirection[id])) {
     taunt = "I'd rather kill myself than feed you.";
   }
 
@@ -69,7 +73,7 @@ router.post(config.routes.move, function (req, res) {
 
 // End the session
 router.post(config.routes.end, function (req, res) {
-  lastDirection = null;
+  lastDirection[req.body.game_id] = null;
 
   // We don't need a response so just send back a 200
   res.status(200);
