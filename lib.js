@@ -108,6 +108,8 @@ exports.nextMove = function nextMove(ourLocation, foodLocation, snakes, board, l
   } else if (deltaY < 0) {
     move = 'up';
     newCoords.y--;
+  } else {
+    console.log('Both deltaX and deltaY are zero.');
   }
 
   var allMoves = ['up', 'down', 'left', 'right'];
