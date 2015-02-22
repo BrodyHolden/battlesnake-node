@@ -63,7 +63,7 @@ router.post(config.routes.move, function (req, res) {
 
 // End the session
 router.post(config.routes.end, function (req, res) {
-  // Do something here to end your snake's session
+  lastDirection = null;
 
   // We don't need a response so just send back a 200
   res.status(200);
