@@ -66,6 +66,7 @@ function oppositeDirection(direction) {
     throw new Error("Unknown direction: " + direction);
   }
 }
+exports.oppositeDirection = oppositeDirection;
 
 function isLocationSafe(pos, board) {
   var tile = board[pos.x][pos.y];

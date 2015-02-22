@@ -52,10 +52,16 @@ router.post(config.routes.move, function (req, res) {
   console.log('move=' + move);
   
   lastDirection = move;
+
+  taunt = '';
+  if (move == lib.oppositeDirection(lastDirection)) {
+    taunt = "I'd rather kill myself than feed you.";
+  }
+
   // Response data
   var data = {
     move: move, // one of: ["up", "down", "left", "right"]
-    taunt: ''
+    taunt: taunt
   };
 
   return res.json(data);
