@@ -1,5 +1,12 @@
 # battlesnake-node(js)
 
+Snake AI for battlesnake 2015 by team SNAKENADO:
+
+  - @Rebeckky Artwork and Conceptual Design
+
+  - @BrodyHolden Programming and Conceptual Design
+
+
 A simple [BattleSnake AI](http://battlesnake.io) written in Javascript for NodeJS (though you could probably use [iojs](https://iojs.org/)).
 
 To get started you'll need a working NodeJS development environment, and at least read the Heroku docs on [deploying a NodeJS app](https://devcenter.heroku.com/articles/getting-started-with-nodejs).
