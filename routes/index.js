@@ -31,7 +31,7 @@ router.post(config.routes.start, function (req, res) {
   var data = {
     name: config.snake.name,
     color: config.snake.color,
-    head_url: config.snake.head_url,
+    head_url: (process.env.HEAD_IMAGE_URL || config.snake.head_url),
     taunt: lib.generateStartTaunt(req.body.game_id)
   };
 
