@@ -50,6 +50,8 @@ app.use(function (err, req, res, next) {
 app.use(function (err, req, res, next) {
   var statusCode = err.status || 500;
 
+  console.log('Error:', err);
+
   res.status(statusCode);
   res.send({
     status: statusCode,
