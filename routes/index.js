@@ -47,14 +47,8 @@ router.post(config.routes.move, function (req, res) {
   var id = req.body.game_id;
 
   var ourLocation = lib.getOurHeadLocation(req.body.snakes);
-  console.log('ourLocation=', ourLocation);
-
   var foodLocation = lib.findClosestFood(ourLocation, req.body.food);
-  console.log('foodLocation=', foodLocation);
-
   var move = lib.nextMove(ourLocation, foodLocation, req.body.snakes, req.body.board, lastDirection[id]);
-  console.log('move=' + move);
-
   lastDirection[id] = move;
 
   var taunt = '';

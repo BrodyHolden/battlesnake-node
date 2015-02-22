@@ -85,17 +85,11 @@ function isLocationSafe(pos, board) {
 }
 
 
-exports.nextMove = function (ourLocation, foodLocation, snakes, board, lastDirection) {
+exports.nextMove = function nextMove(ourLocation, foodLocation, snakes, board, lastDirection) {
   var move;
-
-  console.log('foodlocation=', foodLocation);
-  console.log('ourLocation=', ourLocation);
 
   var deltaX = foodLocation.x - ourLocation.x;
   var deltaY = foodLocation.y - ourLocation.y;
-
-  console.log('deltaX:', deltaX);
-  console.log('deltaY:', deltaY);
 
   var newCoords = {
     x: ourLocation.x,
@@ -159,7 +153,7 @@ exports.nextMove = function (ourLocation, foodLocation, snakes, board, lastDirec
   return move;
 };
 
-exports.generateStartTaunt = function (gameId) {
+exports.generateStartTaunt = function generateStartTaunt(gameId) {
   var idParts = gameId.split('-');
   return "Time for a " + idParts[idParts.length - 1] + "-nado!";
 };
